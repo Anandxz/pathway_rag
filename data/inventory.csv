@@ -1,0 +1,16 @@
+ProductID,ProductName,Location,CurrentStock,LastSoldDate,ExpiryDate,SalesLastMonth,TotalSales,FactoryDistanceKM
+11023,Widget A - Heavy Duty,SectionA-Aisle3-Shelf2,99,2025-09-23,2025-09-24,15,400,14
+11024,Electronic Component B,SectionC-Aisle2-Shelf5,145,2025-10-13,2026-01-06,27,513,23
+11025,Packaging Material C,SectionB-Aisle7-Shelf1,51,2025-09-23,2026-03-18,28,218,5
+11026,Storage Box D,SectionA-Aisle1-Shelf3,338,2025-09-23,2026-02-07,32,377,19
+11027,Power Tool E,SectionD-Aisle6-Shelf4,270,2025-09-23,2026-02-16,73,853,14
+11028,Food Product F,ColdStorage-Zone2,102,2025-09-23,2025-11-17,67,1201,15
+11029,Medical Supply G,SectionA-Aisle3-Shelf3,52,2025-09-23,2025-10-07,87,1276,14
+11030,Spare Part H,SectionB-Aisle2-Shelf6,47,2025-09-23,2025-12-25,149,2526,20
+11031,Electronic Device I,SectionC-Aisle3-Shelf4,201,2025-09-23,2026-03-04,114,659,17
+11032,Office Supply J,SectionA-Aisle5-Shelf1,318,2025-09-23,2026-01-21,144,3388,1
+11033,Raw Material K,BulkStorage-Zone1,261,2025-09-23,2025-12-20,44,638,15
+11034,Consumer Good L,SectionA-Aisle6-Shelf5,29,2025-09-23,2026-07-10,104,1827,16
+11035,Industrial Item M,HeavyGoods-Area3,88,2025-09-23,2026-03-15,32,625,3
+11036,Seasonal Product N,SectionB-Aisle4-Shelf2,118,2025-09-23,2026-07-31,57,327,15
+11037,Fragile Item O,BulkStorage-Aisle5-Shelf3,29,2025-09-23,2025-11-25,84,484,2
