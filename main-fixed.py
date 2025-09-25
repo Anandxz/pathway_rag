@@ -12,7 +12,7 @@ import json
 load_dotenv()
 
 # Set Gemini API key
-os.environ['GEMINI_API_KEY'] = 'AIzaSyA0Dqpk-rCcL5Nb4NJlc6aiQq8A6voVdmM'
+os.environ['GEMINI_API_KEY'] = 'your_api_key'
 
 class InventorySchema(pw.Schema):
     ProductID: int
@@ -195,7 +195,7 @@ def main():
     print("Initializing Gemini embedder...")
     embedder = embedders.GeminiEmbedder(
         model="gemini-embedding-001",  # Fixed model name
-        api_key="AIzaSyA0Dqpk-rCcL5Nb4NJlc6aiQq8A6voVdmM"
+        api_key='GEMINI_API_KEY'
     )
     
     # Create document store with the transformed documents
