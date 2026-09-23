@@ -1,20 +1,25 @@
-# 🏭 Warehouse Management RAG System
+<div align="center">
+  <h1>Warehouse Management RAG System</h1>
 
-A real-time warehouse management system powered by Retrieval-Augmented Generation (RAG) using Pathway and Gemini AI. This system enables intelligent inventory querying, real-time data updates, and seamless warehouse operations management.
+  <p>
+    <a href="#"><img src="https://img.shields.io/badge/python-3.8%2B-blue.svg" alt="Python Version"></a>
+    <a href="#"><img src="https://img.shields.io/badge/Pathway-RAG-orange.svg" alt="Pathway RAG"></a>
+    <a href="#"><img src="https://img.shields.io/badge/Google-Gemini%20AI-00A4EF.svg" alt="Gemini AI"></a>
+    <a href="#"><img src="https://img.shields.io/badge/UI-Streamlit-FF4B4B.svg" alt="Streamlit"></a>
+  </p>
 
-## ✨ Features
+  <p><em>An intelligent, real-time warehouse management solution powered by Retrieval-Augmented Generation (RAG).</em></p>
+</div>
 
-- **AI-Powered Queries**: Ask natural language questions about your inventory
-- **Real-Time Updates**: Live data synchronization with automatic change detection
-- **Interactive Dashboard**: Web-based interface for querying and data management
-- **Natural Language Editing**: Update inventory data using conversational commands
-- **Mock Data Generator**: Simulate real-time warehouse operations
-- **Comprehensive Testing**: Batch and interactive testing capabilities
-- **Live Monitoring**: Real-time inventory alerts and status tracking
+<hr>
 
-## 🏗️ Architecture
+<h2>Overview</h2>
+<p>The <strong>Warehouse Management RAG System</strong> leverages the Pathway framework and Google's Gemini AI to provide an intelligent, conversational interface for warehouse operations. Designed for real-time responsiveness, the system automatically detects inventory changes, synchronizes live data, and allows operators to query and manage stock using natural language.</p>
 
-```
+<h2>System Architecture</h2>
+<p>The application is built on a decoupled, event-driven architecture to ensure high availability and real-time synchronization between the data layer and the frontend interface.</p>
+
+<pre><code>
 ┌─────────────────┐    ┌──────────────────┐    ┌─────────────────┐
 │   Streamlit     │    │   Pathway RAG    │    │   Gemini AI     │
 │   Frontend      │◄──►│     Engine       │◄──►│    Models       │
@@ -26,214 +31,192 @@ A real-time warehouse management system powered by Retrieval-Augmented Generatio
 ┌─────────────────┐    ┌──────────────────┐               
 │  CSV Data       │    │ Data Generator   │               
 │  (inventory.csv)│◄──►│(data_generator.py)│               
-└─────────────────┘    └──────────────────┘               
-```
+└─────────────────┘    └──────────────────┘  
+</code></pre>
 
-## 🚀 Quick Start
+<h2>Key Features</h2>
+<ul>
+  <li><strong>AI-Powered Analytics:</strong> Query complex inventory metrics and statuses using natural language.</li>
+  <li><strong>Real-Time Synchronization:</strong> Live data monitoring with automatic change detection via Pathway's streaming engine.</li>
+  <li><strong>Interactive Dashboard:</strong> A comprehensive, Streamlit-based web interface for seamless data visualization and management.</li>
+  <li><strong>Natural Language Operations:</strong> Update and edit inventory data conversationally without writing SQL or manual data entry.</li>
+  <li><strong>Event Simulation Framework:</strong> Built-in mock data generator for testing high-throughput warehouse operations (sales, restocking, expiration alerts).</li>
+  <li><strong>Live Monitoring:</strong> Automated alerts for critical inventory thresholds and product life-cycles.</li>
+</ul>
 
-### Prerequisites
+<hr>
 
-- Python 3.8+
-- Gemini API Key (Get from [Google AI Studio](https://makersuite.google.com/app/apikey))
+<h2>Getting Started</h2>
 
-### Installation
+<h3>Prerequisites</h3>
+<ul>
+  <li>Python 3.8 or higher</li>
+  <li><a href="https://aistudio.google.com/app/apikey">Google Gemini API Key</a></li>
+</ul>
 
-1. **Clone the repository**
-```bash
-git clone <repository-url>
-cd warehouse_rag
-```
+<h3>Installation</h3>
 
-2. **Install required packages**
-```bash
-pip install -U pathway
-pip install "pathway[xpack-llm]"
-pip install python-dotenv
-pip install streamlit
-pip install pandas
-pip install requests
-```
-
-3. **Set up environment variables**
-
-Edit the `.env` file and add your Gemini API key:
-```env
-GEMINI_API_KEY=your_actual_gemini_api_key_here
-```
-
-4. **Configure API key in main-fixed.py**
-
-Open `main-fixed.py` and update the API key on line 15:
-```python
-os.environ['GEMINI_API_KEY'] = 'your_actual_gemini_api_key_here'
-```
-
-5. **Update file paths**
-
-Update the CSV file path in the following files to match your system:
-
-**main-fixed.py** (line 87):
-```python
-inventory_table = pw.io.csv.read(
-    "/your/absolute/path/to/data/inventory.csv",  # Update this path
+<ol>
+  <li>
+    <strong>Clone the repository</strong>
+<pre><code>git clone &lt;repository-url&gt;
+cd warehouse_rag</code></pre>
+  </li>
+  <li>
+    <strong>Install dependencies</strong>
+<pre><code>pip install -U pathway "pathway[xpack-llm]"
+pip install python-dotenv streamlit pandas requests</code></pre>
+  </li>
+  <li>
+    <strong>Configure Environment Variables</strong>
+    <p>Create a <code>.env</code> file in the root directory and add your Gemini API key:</p>
+<pre><code>GEMINI_API_KEY=your_actual_gemini_api_key_here</code></pre>
+    <p><em>Note: Ensure your API key is also updated on line 15 of <code>main-fixed.py</code> if environment variable loading requires it.</em></p>
+  </li>
+  <li>
+    <strong>Configure Data Paths</strong>
+    <p>Update the absolute path to your <code>inventory.csv</code> file across the following system components:</p>
+    <ul>
+      <li><strong><code>main-fixed.py</code> (Line 87)</strong>
+<pre><code>inventory_table = pw.io.csv.read(
+    "/your/absolute/path/to/data/inventory.csv", 
     schema=InventorySchema,
     mode="streaming",
     autocommit_duration_ms=1000
-)
-```
+)</code></pre>
+      </li>
+      <li><strong><code>app.py</code> (Line 18)</strong>
+<pre><code>CSV_FILE_PATH = "/your/absolute/path/to/data/inventory.csv"</code></pre>
+      </li>
+      <li><strong><code>data_generator.py</code> (Lines 92 &amp; 130)</strong>
+<pre><code>csv_path = '/your/absolute/path/to/data/inventory.csv'</code></pre>
+      </li>
+    </ul>
+  </li>
+</ol>
 
-**app.py** (line 18):
-```python
-CSV_FILE_PATH = "/your/absolute/path/to/data/inventory.csv"  # Update this path
-```
+<hr>
 
-**data_generator.py** (line 92 and 130):
-```python
-csv_path = '/your/absolute/path/to/data/inventory.csv'  # Update this path
-```
+<h2>Running the System</h2>
+<p>For full system functionality, it is recommended to run the microservices in separate terminal windows.</p>
 
-## 🎮 Running the System
+<h3>1. Core Service: RAG Engine</h3>
+<p>Initializes the Pathway streaming engine, generates embeddings, and serves the API on <code>http://localhost:8080</code>.</p>
+<pre><code>python main-fixed.py</code></pre>
 
-The system consists of multiple components that work together. Run each in a separate terminal:
+<h3>2. User Interface: Web Dashboard</h3>
+<p>Launches the interactive Streamlit dashboard on <code>http://localhost:8501</code>.</p>
+<pre><code>streamlit run app.py</code></pre>
 
-### Terminal 1: RAG Engine (Core System)
-```bash
-python main-fixed.py
-```
-This starts the Pathway RAG engine that:
-- Monitors CSV file for changes
-- Processes data through Gemini embeddings
-- Serves API endpoints on `http://localhost:8080`
-- Provides real-time AI-powered responses
+<h3>3. Background Service: Data Simulator (Optional)</h3>
+<p>Simulates warehouse operations like sales, restocking, and movements to test real-time data processing.</p>
+<pre><code>python data_generator.py</code></pre>
 
-### Terminal 2: Web Interface (Recommended)
-```bash
-streamlit run app.py
-```
-This launches the interactive web dashboard at `http://localhost:8501` featuring:
-- AI query assistant
-- Live data editor with natural language commands
-- Real-time inventory monitoring
-- Data visualization and alerts
+<h3>4. Development Tool: Testing Framework (Optional)</h3>
+<p>Provides an interactive or batch-mode CLI for testing RAG query accuracy and response latency.</p>
+<pre><code>python test-queries-fixed.py</code></pre>
 
-### Terminal 3: Data Generator (Optional)
-```bash
-python data_generator.py
-```
-This simulates real-time warehouse operations:
-- Generates realistic inventory updates
-- Simulates sales, restocking, and movement
-- Creates expiry alerts and stock notifications
-- Updates CSV file automatically
+<hr>
 
-### Terminal 4: Testing Interface (Optional)
-```bash
-python test-queries-fixed.py
-```
-Choose from testing modes:
-- **Interactive mode**: Chat-like interface for testing queries
-- **Batch mode**: Run predefined test queries
-- **Real-time test**: Verify live data updates
+<h2>Usage Examples</h2>
+<p>The system interprets natural language to perform complex inventory checks and updates.</p>
 
-## 💬 Example Queries
+<ul>
+  <li><strong>Inventory Status</strong>
+    <ul>
+      <li><em>"Which products are running low on stock?"</em></li>
+      <li><em>"What is the current stock level of product 11023?"</em></li>
+    </ul>
+  </li>
+  <li><strong>Expiry Management</strong>
+    <ul>
+      <li><em>"Show products expiring in the next 30 days."</em></li>
+      <li><em>"List all expired items."</em></li>
+    </ul>
+  </li>
+  <li><strong>Logistics &amp; Location</strong>
+    <ul>
+      <li><em>"Which items are currently stored in Section A?"</em></li>
+      <li><em>"What products should be moved closer to the factory?"</em></li>
+    </ul>
+  </li>
+  <li><strong>Data Mutability (via UI)</strong>
+    <ul>
+      <li><em>"Update product 11023 stock to 50."</em></li>
+      <li><em>"Change Organic Apples location to Section B."</em></li>
+    </ul>
+  </li>
+</ul>
 
-Try these natural language queries with the system:
+<hr>
 
-### Inventory Status
-- "Which products are running low on stock?"
-- "Show me all out of stock items"
-- "What is the current stock level of product 11023?"
+<h2>System Components</h2>
 
-### Expiry Management
-- "What products are expiring soon?"
-- "List all expired items"
-- "Show products expiring in the next 30 days"
+<table>
+  <thead>
+    <tr>
+      <th>Component</th>
+      <th>Purpose</th>
+      <th>Port</th>
+      <th>Status</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>main-fixed.py</code></td>
+      <td>RAG Engine &amp; API Server</td>
+      <td><code>8080</code></td>
+      <td>Core Service</td>
+    </tr>
+    <tr>
+      <td><code>app.py</code></td>
+      <td>Streamlit Web Interface</td>
+      <td><code>8501</code></td>
+      <td>User Interface</td>
+    </tr>
+    <tr>
+      <td><code>data_generator.py</code></td>
+      <td>Mock Data Simulator</td>
+      <td><code>-</code></td>
+      <td>Optional/Dev</td>
+    </tr>
+    <tr>
+      <td><code>test-queries-fixed.py</code></td>
+      <td>Testing Framework</td>
+      <td><code>-</code></td>
+      <td>Development</td>
+    </tr>
+  </tbody>
+</table>
 
-### Sales Analytics
-- "Which products have high demand?"
-- "What were the recent sales?"
-- "Show products with low sales last month"
+<p><strong>Data Schema Requirement:</strong><br>
+The system expects a CSV format with the following headers:<br>
+<code>ProductID, ProductName, Location, CurrentStock, LastSoldDate, ExpiryDate, SalesLastMonth, TotalSales, FactoryDistanceKM</code></p>
 
-### Location & Logistics
-- "Which items are in SectionA?"
-- "What products should be moved closer to the factory?"
-- "Show products by location"
+<hr>
 
-### Data Updates (via Web Interface)
-- "Update product 11023 stock to 50"
-- "Update Organic Apples location to SectionB"
-- "Update product 11025 expiry date to 2025-12-15"
+<h2>Deployment Options</h2>
 
-## 📊 System Components
-
-| Component | Purpose | Port | Status |
-|-----------|---------|------|--------|
-| `main-fixed.py` | RAG Engine & API Server | 8080 | Core Service |
-| `app.py` | Streamlit Web Interface | 8501 | User Interface |
-| `data_generator.py` | Mock Data Simulator | - | Optional |
-| `test-queries-fixed.py` | Testing Framework | - | Development |
-
-## 🔧 Configuration
-
-### Data Schema
-The system expects CSV data with these columns:
-```csv
-ProductID,ProductName,Location,CurrentStock,LastSoldDate,ExpiryDate,SalesLastMonth,TotalSales,FactoryDistanceKM
-```
-
-### API Endpoints
-- **Query Endpoint**: `POST http://localhost:8080`
-- **Request Format**: `{"messages": "your query here"}`
-- **Response Format**: `{"result": "AI response"}`
-
-## 🚀 Deployment
-
-### Local Development
-Follow the installation steps above for local development and testing.
-
-### Production Deployment
-
-#### Option 1: Docker Deployment
-```dockerfile
-FROM python:3.9-slim
-
+<h3>1. Docker Deployment</h3>
+<pre><code>FROM python:3.9-slim
 WORKDIR /app
 COPY . .
-
 RUN pip install -U pathway "pathway[xpack-llm]" streamlit python-dotenv pandas requests
-
 EXPOSE 8080 8501
+CMD ["bash", "-c", "python main-fixed.py &amp; streamlit run app.py --server.port 8501 --server.address 0.0.0.0"]</code></pre>
 
-CMD ["bash", "-c", "python main-fixed.py & streamlit run app.py --server.port 8501 --server.address 0.0.0.0"]
-```
+<h3>2. Cloud Virtual Machine (AWS/GCP/Azure)</h3>
+<p>For traditional VM deployments, a process manager like PM2 is recommended:</p>
+<pre><code># Install process manager
+npm install -g pm2
 
-#### Option 2: Cloud Deployment (AWS/GCP/Azure)
+# Start services
+pm2 start main-fixed.py --name "rag-engine"
+pm2 start "streamlit run app.py" --name "web-interface"
+pm2 startup &amp;&amp; pm2 save</code></pre>
 
-1. **Prepare environment**
-   - Set up cloud VM instance
-   - Install Python and dependencies
-   - Configure firewall rules for ports 8080 and 8501
-
-2. **Deploy files**
-   - Upload all project files
-   - Set environment variables
-   - Update file paths for cloud storage
-
-3. **Use process manager**
-   ```bash
-   # Install PM2 for process management
-   npm install -g pm2
-   
-   # Start services
-   pm2 start main-fixed.py --name "rag-engine"
-   pm2 start "streamlit run app.py" --name "web-interface"
-   pm2 startup
-   pm2 save
-   ```
-
-#### Option 3: Kubernetes Deployment
-```yaml
-apiVersion: apps/v1
+<h3>3. Kubernetes</h3>
+<pre><code>apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: warehouse-rag
@@ -258,36 +241,15 @@ spec:
           valueFrom:
             secretKeyRef:
               name: gemini-secret
-              key: api-key
-```
+              key: api-key</code></pre>
 
-## 🛠️ Troubleshooting
+<hr>
 
-### Common Issues
+<h2>Troubleshooting &amp; Optimization</h2>
 
-1. **Server not starting**
-   - Check if ports 8080/8501 are available
-   - Verify Gemini API key is correct
-   - Ensure all dependencies are installed
-
-2. **CSV file not found**
-   - Verify file paths are correct and use absolute paths
-   - Check file permissions
-   - Ensure data directory exists
-
-3. **No responses from RAG**
-   - Confirm `main-fixed.py` is running
-   - Check server logs for errors
-   - Verify CSV file has proper schema
-
-4. **Real-time updates not working**
-   - Ensure file modification timestamps are updating
-   - Check Pathway streaming configuration
-   - Verify data generator is running
-
-### Debug Commands
-```bash
-# Check if services are running
+<h3>Debugging Commands</h3>
+<p>Verify system health and API responsiveness:</p>
+<pre><code># Check service status
 curl http://localhost:8080
 curl http://localhost:8501
 
@@ -296,43 +258,27 @@ curl -X POST -H "Content-Type: application/json" \
      -d '{"messages": "test query"}' \
      http://localhost:8080
 
-# Check logs
-tail -f pathway.log
-```
+# Monitor Pathway engine logs
+tail -f pathway.log</code></pre>
 
-## 📈 Performance Tips
+<h3>Performance Best Practices</h3>
+<ul>
+  <li><strong>Storage:</strong> Utilize SSD storage for optimal CSV file I/O performance during streaming.</li>
+  <li><strong>LLM Config:</strong> Adjust <code>max_tokens</code> in your Gemini configuration based on the desired response verbosity.</li>
+  <li><strong>Sync Rate:</strong> Tune <code>autocommit_duration_ms</code> in <code>main-fixed.py</code> to balance update latency with compute overhead.</li>
+</ul>
 
-- Use SSD storage for better CSV file I/O
-- Increase `max_tokens` in LLM configuration for detailed responses
-- Adjust `autocommit_duration_ms` for faster/slower update detection
-- Use proper indexing for large inventories
+<hr>
 
-## 🤝 Contributing
+<h2>Contributing</h2>
+<p>Contributions are welcome. Please adhere to the following workflow:</p>
+<ol>
+  <li>Fork the repository.</li>
+  <li>Create a feature branch (<code>git checkout -b feature/enhancement</code>).</li>
+  <li>Commit your changes (<code>git commit -m 'Implement enhancement'</code>).</li>
+  <li>Push to the branch (<code>git push origin feature/enhancement</code>).</li>
+  <li>Open a Pull Request.</li>
+</ol>
 
-1. Fork the repository
-2. Create feature branch (`git checkout -b feature/amazing-feature`)
-3. Commit changes (`git commit -m 'Add amazing feature'`)
-4. Push to branch (`git push origin feature/amazing-feature`)
-5. Open Pull Request
-
-## 📄 License
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-
-## 🙏 Acknowledgments
-
-- [Pathway](https://pathway.com) for the real-time RAG framework
-- [Google Gemini](https://ai.google.dev) for AI capabilities
-- [Streamlit](https://streamlit.io) for the web interface
-- The open-source community for various dependencies
-
-## 📧 Support
-
-For support and questions:
-- Open an issue on GitHub
-- Check the [documentation](docs/)
-- Contact the development team
-
----
-
-**Built with ❤️ for modern warehouse management**
+<h2>License</h2>
+<p>This project is licensed under the MIT License. See the <code>LICENSE</code> file for details.</p>
